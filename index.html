@@ -37,12 +37,16 @@
         <img src="img/IMG_9502.JPG" alt="foto fajar sidiq" />
         <h1>FAJAR SIDIQ</h1>
         <h3>STUDENT|WEB LEANER</h3>
-        <p>Saya adalah seorang mahasiswa yang sedang mempelajari web development dan berfokus pada pembuatan website sederhana, rapi, serta responsif menggunakan HTML, CSS, dan JavaScript dasar.
-      </p>
+        <p>Saya adalah seorang mahasiswa yang sedang mempelajari web development dan berfokus pada pembuatan website sederhana, rapi, serta responsif menggunakan HTML, CSS, dan JavaScript dasar.</p>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#213448" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,176C384,160,480,96,576,74.7C672,53,768,75,864,112C960,149,1056,203,1152,186.7C1248,171,1344,85,1392,42.7L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#213448"
+          fill-opacity="1"
+          d="M0,128L48,144C96,160,192,192,288,176C384,160,480,96,576,74.7C672,53,768,75,864,112C960,149,1056,203,1152,186.7C1248,171,1344,85,1392,42.7L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
     </section>
-    
 
     <section id="about">
       <div class="container">
@@ -53,7 +57,6 @@
           pemahaman struktur HTML, styling CSS, serta penerapan desain responsif secara sederhana.
         </p>
       </div>
-      
     </section>
     <section id="projects">
       <div class="container">
@@ -61,7 +64,6 @@
         <p>1. Website Portfolio (Vanilla) Website portofolio sederhana yang dibuat menggunakan HTML, CSS, dan JavaScript dasar tanpa framework.</p>
         <p>2. Website Online Shop (Bootstrap) Website katalog produk sederhana yang dibuat menggunakan Bootstrap untuk melatih penggunaan grid system dan komponen UI.</p>
       </div>
-      
     </section>
 
     <section id="skills">
@@ -69,31 +71,35 @@
         <h2>SKILLS</h2>
         <div class="fotoskil">
           <div class="skill-item">
-            <img src="img/html.jpeg" alt="foto html"/>
-             <p>HTML (Dasar)</p>
+            <img src="img/html.jpeg" alt="foto html" />
+            <p>HTML (Dasar)</p>
           </div>
           <div class="skill-item">
-            <img src="img/css.jpeg" alt="foto css"/>
-             <p>CSS (Dasar)</p>
+            <img src="img/css.jpeg" alt="foto css" />
+            <p>CSS (Dasar)</p>
           </div>
-          <div class="skill-item"> 
-            <img src="img/js1.jpeg" alt="foto js"/>
-             <p>JavaScript (Basic)</p>
+          <div class="skill-item">
+            <img src="img/js1.jpeg" alt="foto js" />
+            <p>JavaScript (Basic)</p>
           </div>
-          
         </div>
       </div>
     </section>
     <section id="contact">
       <div class="container">
         <h2>Contact Me</h2>
-        <form class="contact-form">
-          <input type="text" placeholder="Nama" required />
-          <input type="email" placeholder="Email" required />
+        <form name="tanjoy-contact-form" class="contact-form">
+          <input type="text" placeholder="Nama" required name="nama" />
+          <input type="email" placeholder="Email" required name="email" />
 
-          <textarea placeholder="Pesan" rows="5" required></textarea>
+          <textarea placeholder="Pesan" rows="5" required name="pesan"></textarea>
           <button type="submit">Kirim Pesan</button>
         </form>
+        <p id="successMsg" style="display:none; color: #22c55e; text-align:center; margin-top:15px;">
+  Pesan berhasil dikirim. Terima kasih sudah menghubungi saya!
+</p>
+
+        
       </div>
     </section>
 
@@ -105,5 +111,29 @@
         <p>Fonts by Google Fonts</p>
       </div>
     </footer>
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzHFC8YWOqVJbgMhPJVX6gv8FwDl_6pGIpZHo5-pPGOFdhOKAAaCgXUFiMjLC4pymR0Hw/exec';
+  const form = document.forms['tanjoy-contact-form'];
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        console.log('Success!', response);
+
+        form.reset(); 
+        successMsg.style.display = 'block'; 
+
+        setTimeout(() => {
+          successMsg.style.display = 'none';
+        }, 4000); 
+      })
+      .catch(error => console.error('Error!', error.message));
+  });
+</script>
+
+
   </body>
 </html>
